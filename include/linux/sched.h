@@ -1493,6 +1493,15 @@ struct task_struct {
 	 * New fields for task_struct should be added above here, so that
 	 * they are included in the randomized portion of task_struct.
 	 */
+	ANDROID_KABI_USE(6, u64 susfs_task_state);
+
+	ANDROID_KABI_USE(8, u64 susfs_last_fake_mnt_id);
+#if defined(CONFIG_KSU_SUSFS) && !defined(ANDROID_KABI_RESERVE)
+	u64 susfs_task_state;
+#endif
+#if defined(CONFIG_KSU_SUSFS) && !defined(ANDROID_KABI_RESERVE)
+	u64 susfs_last_fake_mnt_id;
+#endif
 	randomized_struct_fields_end
 
 	struct fuse_package *fpack;
