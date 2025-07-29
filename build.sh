@@ -126,6 +126,10 @@ build_op8p(){
 
 build_op8t(){
     print "Building Kernel for op8t..." blue
+    if [ -d "KernelSU" ]; then
+        rm -rf KernelSU
+    fi
+    curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
     make $args kebab_defconfig&&make $args
     mkzip "op8t${1}"
 }
