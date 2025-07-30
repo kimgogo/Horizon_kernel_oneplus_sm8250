@@ -114,12 +114,22 @@ mkzip (){
     
 build_op8(){
     print "Building Kernel for op8..." blue
+    if [ -d "KernelSU" ]; then
+        rm -rf KernelSU
+    fi
+    curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
+
     make $args instantnoodle_defconfig&&make $args
     mkzip "op8${1}"
 }
 
 build_op8p(){
     print "Building Kernel for op8p..." blue
+    if [ -d "KernelSU" ]; then
+        rm -rf KernelSU
+    fi
+    curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s susfs-1.5.7
+
     make $args instantnoodlep_defconfig&&make $args
     mkzip "op8p${1}"
 }
